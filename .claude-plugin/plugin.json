@@ -1,0 +1,7 @@
+{
+  "name": "anti-slop-skills",
+  "description": "Design and audit UI without the AI-slop look: anti-slop-design, deslop-ui (with scanner) and deslop-copy (EN/AZ/RU).",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["design", "ui", "ux", "web-design", "ai-slop", "audit", "copywriting"]
+}

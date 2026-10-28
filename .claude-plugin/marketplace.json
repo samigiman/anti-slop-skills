@@ -1,0 +1,12 @@
+{
+  "name": "anti-slop-skills",
+  "owner": { "name": "anti-slop-skills contributors" },
+  "plugins": [
+    {
+      "name": "anti-slop-skills",
+      "source": "./",
+      "description": "Design and audit UI without the AI-slop look: anti-slop-design, deslop-ui (with scanner) and deslop-copy (EN/AZ/RU).",
+      "version": "1.0.0"
+    }
+  ]
+}
