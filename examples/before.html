@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northline — BEFORE (slop example)</title>
+<!-- Deliberately bad. A fictional company, used to demo the scanner and the skills. -->
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Poppins", -apple-system, "Segoe UI", sans-serif; background: #0b0b1a; color: #fff; }
+  nav { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 18px 48px;
+        background: rgba(255,255,255,.06); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.08); z-index: 5; }
+  .logo { font-weight: 800; font-size: 22px; }
+  .btn { display: inline-block; padding: 14px 30px; border-radius: 999px; font-weight: 600; color: #fff; text-decoration: none;
+         background: linear-gradient(90deg, #7c3aed, #ec4899); box-shadow: 0 0 40px rgba(168,85,247,.55); transition: all .3s; }
+  .btn.ghost { background: rgba(255,255,255,.08); box-shadow: none; border: 1px solid rgba(255,255,255,.2); }
+  .btn:hover { transform: scale(1.06); }
+  .hero { position: relative; overflow: hidden; text-align: center; padding: 120px 24px 140px;
+          background: radial-gradient(circle at 20% 20%, #4f46e5 0, transparent 45%), radial-gradient(circle at 80% 30%, #d946ef 0, transparent 40%), #0b0b1a; }
+  .blob { position: absolute; width: 380px; height: 380px; border-radius: 50%; background: #8b5cf6; filter: blur(120px); opacity: .5; right: -80px; bottom: -120px; }
+  .pill { display: inline-block; padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,.1); backdrop-filter: blur(8px); font-size: 14px; margin-bottom: 28px; }
+  h1 { font-size: 76px; line-height: 1.02; letter-spacing: -2px; max-width: 960px; margin: 0 auto 24px; }
+  .grad { background: linear-gradient(90deg, #c084fc, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .sub { font-size: 20px; color: #b9b6d3; max-width: 640px; margin: 0 auto 40px; }
+  .actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  section { padding: 96px 24px; text-align: center; }
+  h2 { font-size: 48px; margin-bottom: 16px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1100px; margin: 48px auto 0; }
+  .card { padding: 40px 32px; border-radius: 28px; background: rgba(255,255,255,.06); backdrop-filter: blur(20px);
+          border: 1px solid rgba(255,255,255,.1); box-shadow: 0 30px 60px rgba(0,0,0,.4); transition: all .3s; }
+  .card:hover { transform: scale(1.05); }
+  .icon { font-size: 40px; width: 80px; height: 80px; display: grid; place-items: center; margin: 0 auto 20px; border-radius: 24px; background: linear-gradient(135deg, #6366f1, #a855f7); }
+  .card h3 { font-size: 24px; margin-bottom: 10px; }
+  .card p { color: #b9b6d3; }
+  .stats { display: flex; justify-content: center; gap: 72px; flex-wrap: wrap; }
+  .stats strong { display: block; font-size: 56px; }
+  .quote { max-width: 720px; margin: 48px auto 0; padding: 40px; border-radius: 28px; background: rgba(255,255,255,.06); backdrop-filter: blur(12px); font-size: 20px; }
+  .deal { margin: 40px auto 0; font-size: 18px; }
+  .deal b { color: #f0abfc; }
+  @media (max-width: 760px) {
+    nav { padding: 16px 20px; } nav .links { display: none; }
+    h1 { font-size: 46px; } h2 { font-size: 34px; }
+    .cards { grid-template-columns: 1fr; } .stats { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Northline ✨</div>
+    <a class="btn" href="#">Get Started 🚀</a>
+  </nav>
+
+  <header class="hero">
+    <div class="blob"></div>
+    <div class="pill">🔥 The future of logistics is here</div>
+    <h1>Unlock <span class="grad">seamless</span> logistics at the next level</h1>
+    <p class="sub">Elevate your supply chain with cutting-edge, AI-powered solutions that empower your business to grow effortlessly.</p>
+    <div class="actions"><a class="btn" href="#">Get Started</a><a class="btn ghost" href="#">Learn More</a></div>
+  </header>
+
+  <section data-reveal>
+    <h2>Why choose <span class="grad">Northline</span>?</h2>
+    <p class="sub">We're not just a logistics company — we're your growth partner.</p>
+    <div class="cards">
+      <div class="card"><div class="icon">⚡</div><h3>Lightning Fast</h3><p>Revolutionize your deliveries with unmatched speed.</p></div>
+      <div class="card"><div class="icon">🔒</div><h3>Secure</h3><p>Robust, enterprise-grade security for every shipment.</p></div>
+      <div class="card"><div class="icon">🌍</div><h3>Global</h3><p>Seamlessly connect to a world of possibilities.</p></div>
+    </div>
+  </section>
+
+  <section data-reveal>
+    <div class="stats">
+      <div><strong class="grad">10K+</strong>Happy clients</div>
+      <div><strong class="grad">99.9%</strong>On-time delivery</div>
+      <div><strong class="grad">24/7</strong>Support</div>
+    </div>
+    <blockquote class="quote testimonial">★★★★★<br>"Northline is a total game-changer for our business!"<br><small>— John Doe, CEO of Acme Corp</small></blockquote>
+    <p class="deal">⏰ Limited offer ends in <b id="countdown">02:59:41</b></p>
+  </section>
+
+  <section>
+    <h2>Ready to <span class="grad">transform</span> your logistics?</h2>
+    <p class="sub">Join thousands of businesses already shipping smarter.</p>
+    <a class="btn" href="#">Start Your Journey 🚀</a>
+  </section>
+
+  <script>
+    // Fake urgency: restarts for every visitor.
+    let deadline = Number(localStorage.getItem("deal")) || Date.now() + 3 * 3600e3;
+    localStorage.setItem("deal", deadline);
+    new IntersectionObserver(() => {}).observe(document.body);
+  </script>
+</body>
+</html>

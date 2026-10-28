@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northline Freight — AFTER (cleaned example)</title>
+<!-- The same fictional company after anti-slop-design / deslop-ui / deslop-copy. -->
+<style>
+  :root {
+    --bg: #f6f5f1; --surface: #fff; --text: #1c2321; --muted: #5d6662; --line: #dfe0d9;
+    --accent: #c4460f; --accent-ink: #fff; --ink: #18302a;
+    --r: 8px; --ease: 160ms ease;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 15px/1.55 -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: var(--text); }
+  a { color: inherit; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  .top { background: var(--ink); color: #e9ece8; font-size: 13px; }
+  .top .wrap { display: flex; justify-content: space-between; padding-block: 8px; }
+  header.bar { background: var(--surface); border-bottom: 1px solid var(--line); }
+  header.bar .wrap { display: flex; align-items: center; gap: 32px; height: 64px; }
+  .mark { font-weight: 700; letter-spacing: .02em; font-size: 17px; text-decoration: none; }
+  .mark span { color: var(--accent); }
+  .nav { display: flex; gap: 24px; font-size: 14px; color: var(--muted); }
+  .nav a { text-decoration: none; }
+  .nav a:hover { color: var(--text); }
+  .bar .cta { margin-left: auto; }
+
+  .button { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border-radius: var(--r); border: 1px solid var(--accent);
+            background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: 14px; text-decoration: none; cursor: pointer; transition: background var(--ease); }
+  .button:hover { background: #a93a0b; }
+  .button.quiet { background: transparent; color: var(--text); border-color: var(--line); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .hero { padding: 56px 0 48px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: start; }
+  .eyebrow { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  h1 { font-size: 40px; line-height: 1.15; letter-spacing: -.01em; max-width: 18ch; margin-bottom: 18px; }
+  .lead { font-size: 17px; color: var(--muted); max-width: 46ch; margin-bottom: 28px; }
+  .facts { display: grid; grid-template-columns: repeat(3, auto); gap: 8px 32px; justify-content: start; font-size: 14px; }
+  .facts dt { color: var(--muted); } .facts dd { font-weight: 600; }
+
+  form.quote { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 24px; }
+  form.quote h2 { font-size: 17px; margin-bottom: 4px; }
+  form.quote p { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  input, select { display: block; width: 100%; height: 40px; margin-top: 6px; padding: 0 12px; border: 1px solid var(--line); border-radius: var(--r);
+                  background: #fbfbf9; font: inherit; color: var(--text); }
+  form.quote .button { width: 100%; justify-content: center; margin-top: 6px; }
+
+  .services { border-top: 1px solid var(--line); padding: 48px 0; }
+  h2.section { font-size: 21px; margin-bottom: 20px; }
+  .svc { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+  .svc a { display: block; padding: 20px; text-decoration: none; border-right: 1px solid var(--line); transition: background var(--ease); }
+  .svc a:last-child { border-right: 0; }
+  .svc a:hover { background: #fbfaf6; }
+  .svc svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 12px; }
+  .svc strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  .svc span { font-size: 13px; color: var(--muted); }
+
+  .lanes { padding: 0 0 56px; }
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; font-size: 14px; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  th { font-size: 12px; color: var(--muted); font-weight: 600; background: #fbfbf9; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: 0; }
+  .note { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  footer { background: var(--ink); color: #c9d0cc; font-size: 13px; padding: 40px 0; }
+  footer .wrap { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
+  footer b { color: #fff; display: block; margin-bottom: 8px; }
+  footer a { display: block; text-decoration: none; padding: 3px 0; }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    .top { display: none; }
+    .nav { display: none; }
+    header.bar .wrap { gap: 12px; height: 56px; }
+    .mark { font-size: 15px; white-space: nowrap; }
+    .bar .cta { height: 36px; padding: 0 12px; font-size: 13px; white-space: nowrap; }
+    .hero { padding: 28px 0 32px; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 28px; }
+    h1 { font-size: 30px; }
+    .lead { font-size: 16px; margin-bottom: 20px; }
+    .facts { grid-template-columns: repeat(3, 1fr); gap: 4px 12px; font-size: 13px; }
+    .svc { grid-template-columns: 1fr 1fr; }
+    .svc a:nth-child(2) { border-right: 0; }
+    .svc a:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    th:nth-child(3), td:nth-child(3) { display: none; }
+    footer .wrap { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="top"><div class="wrap"><span>Mon–Fri 09:00–18:00</span><span>+994 12 000 00 00 · ops@northline.example</span></div></div>
+  <header class="bar">
+    <div class="wrap">
+      <a class="mark" href="#">NORTH<span>LINE</span> FREIGHT</a>
+      <nav class="nav"><a href="#">Services</a><a href="#">Lanes</a><a href="#">Customs</a><a href="#">Contact</a></nav>
+      <a class="button cta" href="#quote">Request a quote</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Freight forwarding · Caucasus ⇄ EU</p>
+          <h1>Road and sea freight between Baku, Tbilisi and the EU</h1>
+          <p class="lead">Full and part loads, with export and import paperwork handled by our own customs brokers. Send the route and weight — you get a price within one business day.</p>
+          <dl class="facts">
+            <dt>Quote reply</dt><dt>Road to Germany</dt><dt>Customs</dt>
+            <dd>1 business day</dd><dd>7–9 days</dd><dd>In-house</dd>
+          </dl>
+        </div>
+
+        <form class="quote" id="quote" onsubmit="return false">
+          <h2>Request a quote</h2>
+          <p>No account needed. We reply by email.</p>
+          <div class="row">
+            <label>From<input value="Baku, AZ"></label>
+            <label>To<input placeholder="City, country"></label>
+          </div>
+          <div class="row">
+            <label>Load<select><option>Part load</option><option>Full truck</option><option>Container</option></select></label>
+            <label>Weight, kg<input inputmode="numeric" placeholder="e.g. 2400"></label>
+          </div>
+          <label>Email<input type="email" placeholder="you@company.example"></label>
+          <button class="button" type="submit">Get a price</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="wrap">
+        <h2 class="section">What we move</h2>
+        <div class="svc">
+          <a href="#"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><strong>Road freight</strong><span>Full and part loads, tarp and reefer</span></a>
+          <a href="#"><svg viewBox="0 0 24 24"><path d="M3 15l2 4h14l2-4zM6 15V9h12v6M12 9V4"/></svg><strong>Sea freight</strong><span>20′ and 40′ containers via Poti and Batumi</span></a>
+          <a href="#"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/></svg><strong>Customs</strong><span>Export and import declarations</span></a>
+          <a href="#"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6v10H3zM9 20v-6h6v6"/></svg><strong>Warehousing</strong><span>Short-term storage and cross-dock</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="lanes">
+      <div class="wrap">
+        <h2 class="section">Typical transit times</h2>
+        <table>
+          <thead><tr><th>Lane</th><th>Mode</th><th>Departures</th><th class="num">Days</th></tr></thead>
+          <tbody>
+            <tr><td>Baku → Frankfurt</td><td>Road, full truck</td><td>Weekly</td><td class="num">7–9</td></tr>
+            <tr><td>Baku → Warsaw</td><td>Road, part load</td><td>Every Tuesday</td><td class="num">8–10</td></tr>
+            <tr><td>Rotterdam → Baku</td><td>Sea + road via Poti</td><td>Twice a month</td><td class="num">24–30</td></tr>
+            <tr><td>Tbilisi → Istanbul</td><td>Road, full truck</td><td>On request</td><td class="num">3–4</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Example data for this demo page.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div><b>Northline Freight</b>Fictional company used to demonstrate anti-slop-skills.</div>
+      <div><b>Services</b><a href="#">Road</a><a href="#">Sea</a><a href="#">Customs</a></div>
+      <div><b>Company</b><a href="#">About</a><a href="#">Careers</a></div>
+      <div><b>Contact</b><a href="#">ops@northline.example</a><a href="#">+994 12 000 00 00</a></div>
+    </div>
+  </footer>
+</body>
+</html>

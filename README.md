@@ -4,6 +4,8 @@ Three [Claude Code](https://claude.com/claude-code) skills that stop AI-generate
 
 [Azərbaycanca ↓](#azərbaycanca)
 
+![The same freight company page before and after: a purple gradient hero with emoji and "Unlock seamless logistics" on the left; a calm page with a factual headline and a quote form on the right](docs/images/before-after-desktop.png)
+
 | Skill | Use it when | What it does |
 |---|---|---|
 | **anti-slop-design** | Designing or redesigning a site, app, admin panel, landing page or brochure | Five questions before code, a token-first visual system, layout rules per product type, honest content, mandatory browser verification at 1440/1280/390px |
@@ -17,6 +19,18 @@ These rules were not invented in a vacuum. They come from client and owner feedb
 Purple-to-pink gradients · gradient text · emoji as icons · glassmorphism on every card · `rounded-3xl` + `shadow-2xl` everywhere · centred hero → three icon cards → "10K+ customers" → testimonial carousel · invented statistics · countdowns that restart for every visitor · sections hidden until you scroll · seven different border radii on one page · "Unlock seamless next-level experiences".
 
 Full list: [slop-catalog.md](skills/deslop-ui/references/slop-catalog.md).
+
+## Before and after
+
+Both pages are for the same fictional company, Northline Freight, and both are in [`examples/`](examples) — open them in a browser.
+
+**[Before](examples/before.html)** — what an AI produces when nobody pushes back: a dark purple gradient, a blurred blob, an emoji in the logo and every button, a headline that says nothing ("Unlock seamless logistics at the next level"), three icon cards, invented "10K+ / 99.9%" numbers, a testimonial from John Doe of Acme Corp and a countdown that restarts for every visitor.
+
+**[After](examples/after.html)** — the same company after the three skills: a headline that states what the company does and where, three verifiable facts, the primary action (a quote form) on the first screen, services as a plain list with line icons, a transit-time table instead of made-up stats, one accent colour, one radius, no motion beyond hover colour.
+
+On a phone the difference is bigger. Before, the first screen is all gradient and slogan. After, it is what the company does, how fast it replies and the form to ask for a price:
+
+<p align="center"><img src="docs/images/before-after-mobile.png" width="720" alt="The same two pages at 390px wide: the slop version shows only a gradient and slogan on the first screen; the clean version shows the headline, three facts and the quote form"></p>
 
 ## Install
 
@@ -44,11 +58,14 @@ python3 skills/deslop-ui/scripts/slop_scan.py ./src --min P2 --json
 python3 skills/deslop-ui/scripts/slop_scan.py ./src --fail-on P1   # exit 1 for CI
 ```
 
-Try it on the bundled example:
+Try it on the bundled examples:
 
 ```bash
-python3 skills/deslop-ui/scripts/slop_scan.py examples/slop-landing.html
+python3 skills/deslop-ui/scripts/slop_scan.py examples/before.html   # 40 findings
+python3 skills/deslop-ui/scripts/slop_scan.py examples/after.html    # 0
 ```
+
+![Scanner output: 40 findings on before.html, including emoji, fake countdown, fake stats, gradient text and scroll-reveal; 0 findings on after.html](docs/images/scanner.png)
 
 It is honest about its limits: it finds code-level tells (gradients, emoji, fake stats, scroll-reveal, fake countdowns, clichés). Layout-level slop — no product on the first mobile screen, an unclear primary action — needs the visual review step, which the skill makes mandatory.
 
@@ -86,5 +103,7 @@ Quraşdırma:
 git clone https://github.com/samigiman/anti-slop-skills.git
 cp -R anti-slop-skills/skills/* ~/.claude/skills/
 ```
+
+Nümunələr: [`examples/before.html`](examples/before.html) (AI slop, skan 40 problem tapır) və [`examples/after.html`](examples/after.html) (təmizlənmiş, 0 problem). Eyni uydurma şirkətin iki versiyasıdır.
 
 Sonra sadəcə yazın: *"bu saytı AI slop üçün audit et, hələ heç nəyi dəyişmə"*.
